@@ -1,72 +1,47 @@
 import streamlit as st
 
-st.set_page_config(
-page_title="나와 닮은 동물 찾기",
-page_icon="🐾"
-)
-
 st.title("🐾 나와 닮은 동물 찾기")
 
-st.write("질문에 답하고 나와 가장 닮은 동물을 찾아보자! 😄")
+st.write("질문에 답하고 결과를 확인해보세요!")
 
-q1 = st.radio(
-"1️⃣ 친구들과 있을 때 나는?",
-["분위기를 이끄는 편", "조용히 듣는 편", "장난을 많이 치는 편"]
-)
-
-q2 = st.radio(
-"2️⃣ 주말에 더 하고 싶은 것은?",
-["밖에서 놀기", "집에서 쉬기", "새로운 취미 도전"]
-)
-
-q3 = st.radio(
-"3️⃣ 친구들이 나를 가장 많이 뭐라고 말할까?",
+q1 = st.selectbox(
+"친구들은 나를 어떤 사람이라고 하나요?",
 ["리더 같다", "착하다", "재밌다"]
 )
 
-q4 = st.radio(
-"4️⃣ 학교에서 나는?",
-["발표를 잘한다", "조용히 집중한다", "친구들과 잘 어울린다"]
+q2 = st.selectbox(
+"주말에 무엇을 하고 싶나요?",
+["밖에서 놀기", "집에서 쉬기", "새로운 취미"]
 )
 
-if st.button("결과 보기 🐾"):
+if st.button("결과 보기"):
 
 ```
-if q1 == "분위기를 이끄는 편" or q3 == "리더 같다":
-    animal = "🦁 사자"
-    desc = "자신감이 넘치고 리더십이 강한 성격!"
+if q1 == "리더 같다":
+    st.success("🦁 당신은 사자형!")
+    st.write("리더십이 강하고 자신감이 넘쳐요.")
 
-elif q2 == "집에서 쉬기" and q4 == "조용히 집중한다":
-    animal = "🦉 부엉이"
-    desc = "생각이 깊고 신중한 성격!"
+elif q1 == "착하다":
+    st.success("🐶 당신은 강아지형!")
+    st.write("친절하고 친구를 잘 챙겨요.")
 
-elif q1 == "장난을 많이 치는 편" or q3 == "재밌다":
-    animal = "🦦 수달"
-    desc = "밝고 장난기 많은 성격!"
-
-elif q3 == "착하다":
-    animal = "🐶 강아지"
-    desc = "친절하고 친구를 잘 챙기는 성격!"
-
-else:
-    animal = "🐱 고양이"
-    desc = "독립적이고 자기만의 매력이 있는 성격!"
-
-st.success(f"당신과 가장 닮은 동물은 {animal}")
-st.subheader(desc)
+elif q1 == "재밌다":
+    st.success("🦦 당신은 수달형!")
+    st.write("밝고 장난기가 많아요.")
 ```
 
-st.divider()
+st.markdown("---")
 
-st.header("📚 동물 성격 도감")
+animal = st.selectbox(
+"동물 설명 보기",
+["사자", "강아지", "수달"]
+)
 
-animals = {
-"🐶 강아지": "사교적이고 친구를 좋아해요.",
-"🐱 고양이": "독립적이고 차분한 성격이에요.",
-"🦦 수달": "장난기가 많고 밝은 성격이에요.",
-"🦁 사자": "리더십이 강하고 자신감이 넘쳐요.",
-"🦉 부엉이": "신중하고 생각이 깊어요."
-}
+if animal == "사자":
+st.info("🦁 리더십이 강하고 용감해요.")
 
-animal = st.selectbox("동물을 선택해 보세요!", list(animals.keys()))
-st.info(animals[animal])
+elif animal == "강아지":
+st.info("🐶 사교적이고 친절해요.")
+
+elif animal == "수달":
+st.info("🦦 활발하고 긍정적이에요.")
